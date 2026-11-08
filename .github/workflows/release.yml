@@ -1,0 +1,42 @@
+name: Windows release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build Windows executable
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build
+        run: cargo build --release --locked
+      - name: Prepare executable and checksum
+        shell: pwsh
+        run: |
+          $version = $env:GITHUB_REF_NAME -replace '^v', ''
+          if ($version -notmatch '^\d{8}$') { throw "Release tag must be vYYYYMMDD; got $env:GITHUB_REF_NAME" }
+          $manifestVersion = [regex]::Match((Get-Content Cargo.toml -Raw), '(?m)^version\s*=\s*"(\d{4})\.(\d{1,2})\.(\d{1,2})"\s*$')
+          if (-not $manifestVersion.Success) { throw 'Cargo.toml version must use YYYY.M.D format.' }
+          $packageDate = '{0}{1}{2}' -f $manifestVersion.Groups[1].Value, $manifestVersion.Groups[2].Value.PadLeft(2, '0'), $manifestVersion.Groups[3].Value.PadLeft(2, '0')
+          if ($packageDate -ne $version) { throw "Release tag date $version does not match Cargo package version date $packageDate" }
+          $exe = "teams-chat-exporter-$version.exe"
+          New-Item -ItemType Directory -Path bin -Force | Out-Null
+          Copy-Item target/release/teams-chat-exporter.exe "./bin/$exe"
+          $hash = (Get-FileHash "./bin/$exe" -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  $exe" | Set-Content "./bin/$exe.sha256" -Encoding ascii
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $tag = $env:GITHUB_REF_NAME
+          $version = $tag -replace '^v', ''
+          $exe = "teams-chat-exporter-$version.exe"
+          gh release create $tag "./bin/$exe" "./bin/$exe.sha256" --title $tag --generate-notes

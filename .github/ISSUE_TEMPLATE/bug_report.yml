@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a reproducible problem
+title: "Bug: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include chat exports, tokens, personal data, or private tenant details. Report security vulnerabilities privately using the Security policy.
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: For example, 20261106 or the commit hash if built from source.
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the action you took and the result you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant error text
+      description: Remove names, addresses, message content, and tenant identifiers first.
+    validations:
+      required: false

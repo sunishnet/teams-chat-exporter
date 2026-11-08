@@ -1,0 +1,11 @@
+/target
+/teams-chat-exporter.exe
+/teams-chat-exporter-*.exe
+/bin/*.exe
+/bin/*.sha256
+*.7z
+*.zip
+*.tmp
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fb">
+  <meta name="description" content="A small Windows app for exporting Microsoft Teams chats to HTML, CSV, and JSON. Free and open source.">
+  <title>Teams Chat Exporter — Open source Teams chat exports</title>
+  <style>
+    :root { color-scheme: light; --ink:#20243a; --muted:#5f6478; --brand:#464775; --line:#e4e7f0; --paper:#fff; --wash:#f5f6fb; }
+    * { box-sizing:border-box }
+    body { margin:0; font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif; background:var(--wash); color:var(--ink); line-height:1.6 }
+    a { color:var(--brand) }
+    .wrap { width:min(100% - 36px, 1040px); margin:auto }
+    header { padding:24px 0; display:flex; align-items:center; justify-content:space-between; gap:20px }
+    .brand { font-weight:750; color:var(--ink); text-decoration:none; letter-spacing:-.02em }
+    nav { display:flex; gap:20px; flex-wrap:wrap; font-size:.94rem }
+    nav a { text-decoration:none }
+    .hero { padding:76px 0 62px; text-align:center }
+    .eyebrow { color:var(--brand); font-size:.78rem; font-weight:750; letter-spacing:.14em; text-transform:uppercase }
+    h1 { max-width:800px; margin:14px auto; font-size:clamp(2.5rem,7vw,4.6rem); line-height:1.05; letter-spacing:-.055em }
+    .lead { max-width:660px; margin:20px auto 28px; color:var(--muted); font-size:1.14rem }
+    .actions { display:flex; justify-content:center; flex-wrap:wrap; gap:12px }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 20px; border:1px solid var(--brand); border-radius:12px; background:var(--brand); color:white; font-weight:700; text-decoration:none; box-shadow:0 8px 20px #46477525 }
+    .button.secondary { background:var(--paper); color:var(--brand); box-shadow:none }
+    .note { margin-top:16px; color:var(--muted); font-size:.9rem }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:10px 0 72px }
+    .card { background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:24px }
+    .card .icon { font-size:1.5rem }
+    h2 { margin:8px 0; font-size:1.18rem; letter-spacing:-.02em }
+    .card p { margin:0; color:var(--muted) }
+    .support { display:grid; grid-template-columns:1fr auto; align-items:center; gap:28px; margin:0 0 60px; padding:32px; border-radius:22px; background:#eceefe; border:1px solid #dfe2fc }
+    .support h2 { font-size:1.6rem }
+    .support p { margin:8px 0 0; color:var(--muted); max-width:590px }
+    footer { border-top:1px solid var(--line); padding:24px 0 36px; display:flex; justify-content:space-between; gap:12px; color:var(--muted); font-size:.9rem }
+    @media(max-width:700px) { header { align-items:flex-start; flex-direction:column } .hero { padding:54px 0 40px } .grid { grid-template-columns:1fr; padding-bottom:42px } .support { grid-template-columns:1fr; padding:24px } footer { flex-direction:column } }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="#top">Teams Chat Exporter</a>
+    <nav aria-label="Main navigation">
+      <a href="https://github.com/sunishnet/teams-chat-exporter">Source code</a>
+      <a href="https://github.com/sunishnet/teams-chat-exporter/releases">Releases</a>
+      <a href="https://github.com/sunishnet/teams-chat-exporter/blob/main/README.md">Documentation</a>
+    </nav>
+  </header>
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Free · Open source · Windows</div>
+      <h1>Your Teams chats, in formats you can keep.</h1>
+      <p class="lead">Export 1:1, group, and meeting chats to readable HTML, CSV, and JSON. Sign in with Microsoft, choose the chats, and save a local copy.</p>
+      <div class="actions">
+        <a class="button" href="https://github.com/sunishnet/teams-chat-exporter/releases/latest">Download for Windows</a>
+        <a class="button secondary" href="https://github.com/sunishnet/teams-chat-exporter">Explore the source</a>
+      </div>
+      <p class="note">Built with Rust and Microsoft Graph. Your exports are written to the folder you choose.</p>
+    </section>
+    <section class="grid" aria-label="Features">
+      <article class="card"><div class="icon" aria-hidden="true">💬</div><h2>Three chat formats</h2><p>Keep a styled transcript, open messages in a spreadsheet, or retain the raw Graph response.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">🖼️</div><h2>Useful details</h2><p>Include replies, reactions, attachments, system events, participants, and optional pasted images.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">🔒</div><h2>Local exports</h2><p>Sign in through Microsoft. Choose where exports are saved, and handle them as sensitive data.</p></article>
+    </section>
+    <section class="support" id="support">
+      <div><div class="eyebrow">Support the project</div><h2>Help keep it maintained.</h2><p>If this tool saves you time, you can support ongoing maintenance with a small coffee. Contributions are optional; the app remains free and open source.</p></div>
+      <a class="button" href="https://buymeacoffee.com/sunish">☕ Buy me a coffee</a>
+    </section>
+  </main>
+  <footer class="wrap"><span>© 2026 <a href="https://sunish.net">Sunish Issac</a> · Vibe coded by Sunish Issac with Codex · MIT License</span><span><a href="https://github.com/sunishnet/teams-chat-exporter/blob/main/SECURITY.md">Security</a> · <a href="https://github.com/sunishnet/teams-chat-exporter/issues">Report an issue</a></span></footer>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[package]
+name = "teams-chat-exporter"
+version = "2026.11.6"
+edition = "2021"
+description = "Desktop app to export Microsoft Teams 1:1, group and meeting chats to HTML, CSV and JSON"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/sunishnet/teams-chat-exporter"
+homepage = "https://sunishnet.github.io/teams-chat-exporter"
+rust-version = "1.95"
+
+[package.metadata.winres]
+LegalCopyright = "Copyright © 2026 Sunish Issac"
+OriginalFilename = "teams-chat-exporter.exe"
+
+[dependencies]
+# wgpu (default, DirectX 12 on Windows) + glow (OpenGL fallback, start with --opengl)
+eframe = { version = "0.37", features = ["persistence", "glow"] }
+egui_extras = "0.37"
+reqwest = { version = "0.13", default-features = false, features = ["blocking", "json", "form", "native-tls", "system-proxy"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+base64 = "0.22"
+getrandom = "0.3"
+tiny_http = "0.12"
+open = "5"
+rfd = "0.17"
+csv = "1"
+chrono = "0.4"
+regex = "1"
+url = "2"
+dirs = "6"
+
+[build-dependencies]
+winres = "0.1"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
